@@ -11,10 +11,9 @@ The models that we needed to finish hyperparameter tuning were the logistic regr
 Through our analysis, we discovered that over 64% of our unique tokens only occur in 1 document. From there we decided to remove all tokens that only appear in one document, as they do not add much to our model while slowing down computation time as well. Below is a bar graph showing counts of document frequency.
 
 <p align="center">
-    <img src="https://i.imgur.com/v1tHNjN.png" style="width: 400px; height: auto;"></img> <br>
-    <em>Figure 1. HTML feature labels with their respective counts.</em>
-</p> 
-
+    <img src="https://cdn.discordapp.com/attachments/949346720536481802/969721724587348058/image2_bar.png" style="width: 500px; height: auto;"></img> <br>
+    <em>Figure 1. Count of documents and their word counts in dataset.</em>
+</p>
 
 The methodology for creating this graph involves using the “corpora” function from the “gensim” library to create a dictionary of tokens and their corresponding document frequencies. From there we just had to convert the values of the dictionary to a numpy array and then plot a histogram for all the tokens that appear in less than 10 documents.
 
@@ -23,8 +22,8 @@ The next thing we did was add the token “com” to our list of stopwords, thus
 We also added in a micro average ROC curve for the majority of our models. Below is the ROC curve for our logistic regression model using bigrams.
 
 <p align="center">
-    <img src="https://i.imgur.com/v1tHNjN.png" style="width: 400px; height: auto;"></img> <br>
-    <em>Figure 1. HTML feature labels with their respective counts.</em>
+    <img src="https://cdn.discordapp.com/attachments/949346720536481802/969721724344102962/image1_roc.png" style="width: 600px; height: auto;"></img> <br>
+    <em>Figure 2. ROC Curve curve for our logistic regression model using bigrams.</em>
 </p> 
 
 The last thing we did was finish up tuning the hyperparameters for our SVM model. The parameters we looked at are the probability parameter as well as the C parameter. The best model produced a testing weighted average precision of **85%** which so far has been our best performing model. This model was only run on unigrams. We were not able to run it on bigrams due to computation issues. From there we were able to move on to different boosting models.
@@ -52,7 +51,7 @@ For our Decision Tree classifier, the main parameter that tuned was max_depth wh
 </center>
 
 <p align="left">
-    <em>Figure #: A comparison of the weighted average precision metrics according to the different data used in the decision tree model.</em>
+    <em>Figure 3. A comparison of the weighted average precision metrics according to the different data used in the decision tree model.</em>
 </p>
 
 We see that the Decision Tree model has an weighted average precision of about 79-81%, which is a bit lower than our previous models. Interestingly, the model containing data from bigrams did not perform much better than the model with only data from unigrams.
@@ -75,7 +74,7 @@ For our Random Forest classifier, we tuned the parameters max_depth and n_estima
 </center>
 
 <p align="left">
-    <em>Figure #: A comparison of the weighted average precision metrics according to the different data used in the random forest model.</em>
+    <em>Figure 4. A comparison of the weighted average precision metrics according to the different data used in the random forest model.</em>
 </p>
 
 At first glance, we see that the Random Forest classifiers did perform slightly better than the Decision Tree classifiers with weighted average precisions of 82-83%, but not by much. This value is close to our current best SVM model, but does not look to be better.
@@ -98,8 +97,8 @@ After completing the decision tree and random forest models as a baseline, the m
 After tuning hyperparameters and running the model on the test set, we obtained a weighted average precision of **84%** for bigrams which to our surprise was less than that of the SVM. Classification report shown below.
 
 <p align="center">
-    <img src="https://i.imgur.com/v1tHNjN.png" style="width: 400px; height: auto;"></img> <br>
-    <em>Figure 1. HTML feature labels with their respective counts.</em>
+    <img src="https://cdn.discordapp.com/attachments/949346720536481802/969721724818063380/image3_report.png" style="width: 500px; height: auto;"></img> <br>
+    <em>Figure 5. Classification report of LightGBM model.</em>
 </p> 
 
 After seeing that our LightGBM performed worse than our SVM we were a little thrown off as to how to proceed so our sponsors emphasized the importance of dimensionality reduction and feature selection as our dataset is so wide (over 300,000 columns). Because of this, our sponsors suggested that we increase our min_df parameter to only include tokens that appear in 10+ documents as well as to use a pre-trained language model such as word2vec to decrease the number of features that our model is taking as input.
