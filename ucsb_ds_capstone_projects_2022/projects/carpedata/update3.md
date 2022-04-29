@@ -1,4 +1,5 @@
-# **CARPE DATA — UPDATE 3**
+# Update 3 - (4/29/22)
+******
 
 In our last progress report, we refined our cleaning and preprocessing pipeline in order to ensure that the models we created would perform more efficiently and accurately in predicting the labels for our web page data. We then finished creating our baseline models for naive bayes, linear regression and SVM and began cross-validation across all of them in order to tune the hyperparameters. We also added various exploratory plots in order to visualize model performance and the features of the labels in our dataset.
 
