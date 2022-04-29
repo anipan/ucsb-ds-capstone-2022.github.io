@@ -115,7 +115,7 @@ BERT stands for Bidirectional Encoder Representations from Transformers. BERT us
 
 In our previous progress update, most of our work had been focused on fine-tuning the basic classification models that we were using, with an emphasis on the specific hyperparameters we were tuning. Since then, we have forayed significantly into more statistically flexible models, like the LightGBM classifier and the Random Forest classifier, in order to make sure that we cover all possible classification models in our search for the top performer. Through this process, we realized that these new classification methods were not performing better than our previously trained SVM model. Additionally, we experimented with the ‘min_df’ and ‘chi squared’ hyperparameters in our TF-IDF vectorizer and haven’t seen much improvement in terms of results either.
 
-While our efforts haven’t resulted the exact success that we want, they have given us perspective of what we want to do going forward:
+While our efforts haven’t resulted in the exact success that we want, they have given us perspective of what we want to do going forward:
 
 * We will continue to look into pretrained language models, such as Word2Vec, to see if an out of the box solution is more viable.
 * We will continue to research and possibly alter the hyperparameters we are tuning.
